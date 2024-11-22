@@ -23,6 +23,9 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm install
+        
+      - name: Ensure babel is executable
+        run: chmod +x node_modules/.bin/babel
 
       # Run the build script
       - name: Run build
