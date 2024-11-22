@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "build": "babel src --out-dir dist"
+    "build": "babel app.js --out-dir ."
   },
   "keywords": [],
   "author": "",
