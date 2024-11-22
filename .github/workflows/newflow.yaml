@@ -23,7 +23,8 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: npm install
-        
+
+      # Ensure babel is executable
       - name: Ensure babel is executable
         run: chmod +x node_modules/.bin/babel
 
@@ -31,4 +32,16 @@ jobs:
       - name: Run build
         run: npm run build
 
-      # You can add other steps for deployment or testing if needed
+      # Login to Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Build and push the Docker image
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: user/app:latest
